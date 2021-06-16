@@ -1,0 +1,39 @@
+<h2>Добавить событие</h2>
+<form [formGroup]="newEvent">
+    <mat-form-field appearance="fill">
+        <mat-label>Название</mat-label>
+        <input matInput  [formControl]="nameControl">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Событие</mat-label>
+        <mat-select [formControl]="eventControl">
+        <mat-option value="1">Праздничные дни</mat-option>
+        <mat-option value="2">Мероприятия</mat-option>
+        <mat-option value="3">Заметки</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div *ngIf="eventControl.value === '1'">
+        <mat-form-field appearance="fill">
+            <mat-label>Сумма</mat-label>
+            <input matInput  [formControl]="budgetControl">
+        </mat-form-field>
+    </div>
+    <div *ngIf="eventControl.value === '2'">
+        <mat-form-field appearance="fill">
+            <mat-label>Адрес</mat-label>
+            <input matInput  [formControl]="adressControl">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+            <mat-label>Время</mat-label>
+            <input matInput  [formControl]="timeControl">
+        </mat-form-field>
+    </div>
+    <div *ngIf="eventControl.value === '3'">
+        <mat-form-field appearance="fill">
+            <mat-label>Textarea</mat-label>
+            <textarea matInput [formControl]="descriptionControl"></textarea>
+        </mat-form-field>
+    </div>
+</form>
+<button mat-stroked-button color="primary">Отмена</button>
+<button mat-stroked-button color="primary" (click)="onSaveClick()">Сохранить</button>

@@ -1,1 +1,24 @@
 <h1>Планер событий</h1>
+
+<mat-form-field appearance="fill">
+  <mat-label>Выберите дату</mat-label>
+  <input matInput [matDatepicker]="picker"  (dateInput)="chooseDate($event)">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<div>
+  <button mat-raised-button color="primary" (click)="addNewEvent()">Добавить</button>
+</div>
+
+<div> 
+  <h2>Сегодня запланированно</h2>
+  <div *ngFor="let event of events">
+    <h3>{{event.name}}</h3>
+    <p *ngIf="event.budget != undefined">Бюджет: {{event.budget}}</p>
+    <p *ngIf="event.adress != undefined ">Адрес: {{event.adress}}</p>
+    <p *ngIf="event.time != undefined ">Время: {{event.time}}</p>
+    <p *ngIf="event.description != undefined">{{event.description}}</p>
+    <mat-divider></mat-divider>
+  </div>
+</div>
